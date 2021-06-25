@@ -1,0 +1,55 @@
+{
+    "name": "mini-lifecycle-interceptor",
+    "version": "0.0.1",
+    "description": "微信小程序生命周期钩子拦截器",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "dev": "rm -rf ./lib && npx spack",
+        "build": "yarn dev && tsc --emitDeclarationOnly",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint 'src/**/*.ts'"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yangger6/mini-lifecycle-interceptor.git"
+    },
+    "keywords": [
+        "mini-program",
+        "interceptor"
+    ],
+    "author": "yangger <i@yangger.cn>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/yangger6/mini-lifecycle-interceptor/issues"
+    },
+    "homepage": "https://github.com/yangger6/mini-lifecycle-interceptor#readme",
+    "devDependencies": {
+        "@swc/cli": "^0.1.46",
+        "@swc/core": "^1.2.61",
+        "@swc/helpers": "^0.2.12",
+        "@types/koa-compose": "^3.2.5",
+        "@types/wechat-miniprogram": "^3.3.0",
+        "@typescript-eslint/eslint-plugin": "^4.28.0",
+        "@typescript-eslint/parser": "^4.28.0",
+        "eslint": "^7.29.0",
+        "husky": "^6.0.0",
+        "lint-staged": "^11.0.0",
+        "prettier": "^2.3.1",
+        "typescript": "^4.3.4"
+    },
+    "dependencies": {
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*./src/**/*.{ts,json,md}": [
+            "prettier --write",
+            "yarn lint"
+        ]
+    }
+}
