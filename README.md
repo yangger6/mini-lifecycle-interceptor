@@ -10,6 +10,8 @@ Mini Program lifeCycle interceptor
 - [x]  interceptor Page
 - [x]  interceptor Component
 - [x]  support Promise
+- [ ]  support filter
+- [ ]  support exclude
 
 ## App Env Support
 
