@@ -10,7 +10,7 @@ export type IComposeHandle<T> = (options: T, next?: INextHandle) => Promise<void
 export default function wxCompose<T>(handles: Array<IHandle<T>>): IComposeHandle<T> {
   return function (this: any, options, next) {
     const wxThis = this
-    // last called tn
+    // last called handle #
     let index = -1
     function dispatch(i: number): Promise<void> {
       if (i <= index) return Promise.reject(new Error('next() called multiple times'))

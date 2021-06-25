@@ -1,4 +1,3 @@
-import compareVersions from 'compare-versions'
 import InterceptorManager, { IMiniLifeCycleKey, miniComponentLifeCycle, miniPageLifeCycle } from './InterceptorManager'
 import wxCompose, { INextHandle } from '../utils/wxCompose'
 import { IMiniLifeCycle } from '..'

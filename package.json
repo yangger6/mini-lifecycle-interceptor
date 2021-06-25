@@ -20,7 +20,7 @@
         "interceptor"
     ],
     "author": "yangger <i@yangger.cn>",
-    "license": "ISC",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/yangger6/mini-lifecycle-interceptor/issues"
     },

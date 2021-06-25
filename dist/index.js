@@ -53,7 +53,7 @@ class InterceptorManager {
     useAfter(handles) {
         if (!this.lifeCycleType) return this.errorTip(0);
         this.isDestroy = false;
-        this.useAfterHandles = handleToList(handleToList(handles));
+        this.useAfterHandles = this.useAfterHandles.concat(handleToList(handles));
     }
     // 销毁
     destroy() {
@@ -99,7 +99,7 @@ class InterceptorManager {
 function wxCompose(handles) {
     return function(options, next) {
         const wxThis = this;
-        // last called tn
+        // last called handle #
         let index = -1;
         function dispatch(i) {
             if (i <= index) return Promise.reject(new Error('next() called multiple times'));

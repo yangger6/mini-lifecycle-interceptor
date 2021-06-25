@@ -3,6 +3,7 @@ import { IHandle } from '../utils/wxCompose'
 
 /**
  * 小程序页面的生命周期钩子集合
+ * @description 官网 - https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html
  */
 export const miniPageLifeCycle = {
   onReady: 'onReady',
@@ -13,7 +14,7 @@ export const miniPageLifeCycle = {
 }
 
 /**
- * 小程序页面的生命周期钩子集合
+ * 自定义组件的生命周期钩子集合
  * @description 官网 - https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/lifetimes.html
  */
 export const miniComponentLifeCycle = {
@@ -92,7 +93,7 @@ export default class InterceptorManager {
       return this.errorTip(0)
     }
     this.isDestroy = false
-    this.useAfterHandles = handleToList(handleToList<T>(handles))
+    this.useAfterHandles = this.useAfterHandles.concat(handleToList<T>(handles))
   }
 
   // 销毁

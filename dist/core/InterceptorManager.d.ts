@@ -1,6 +1,7 @@
 import { IHandle } from '../utils/wxCompose';
 /**
  * 小程序页面的生命周期钩子集合
+ * @description 官网 - https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html
  */
 export declare const miniPageLifeCycle: {
     onReady: string;
@@ -10,7 +11,7 @@ export declare const miniPageLifeCycle: {
     onUnload: string;
 };
 /**
- * 小程序页面的生命周期钩子集合
+ * 自定义组件的生命周期钩子集合
  * @description 官网 - https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/lifetimes.html
  */
 export declare const miniComponentLifeCycle: {

@@ -2,38 +2,38 @@
 
 [![zh-cn](https://img.shields.io/badge/zh--cn-%E4%B8%AD%E6%96%87-yellow)](https://github.com/yangger6/mini-lifecycle-interceptor/blob/main/README_CN.md)
 
-Mini Program lifeCycle interceptor
+小程序生命周期方法拦截器
 
 
-## Features
+## 特效
 
-- [x]  interceptor Page
-- [x]  interceptor Component
-- [x]  support Promise
+- [x]  拦截Page
+- [x]  拦截Component
+- [x]  支持Promise
 
-## App Env Support
+## 运行平台支持
 
-- [x]  support Wechat Mini Program
-- [x]  support Taro
-- [ ]  support Alipay Mini Program
+- [x]  支持微信小程序
+- [x]  支持Taro
+- [ ]  支持支付宝小程序
 
-## Installing
+## 安装
 
-Using npm:
+使用 npm:
 
 ```bash
 $ npm install mini-lifecycle-interceptor
 ```
 
-Using yarn:
+使用 yarn:
 
 ```bash
 $ yarn add axios
 ```
 
-## Example
+## 示例
 
-Using Taro:
+使用Taro:
 
 ```typescript
 
@@ -90,15 +90,15 @@ function App(props: any) {
 // step5: delay 1000ms
 ```
 
-Using Wechat Mini Program
+使用微信小程序:
 
 ```typescript
 // TODO
 ```
 
-## mini-lifecycle-interceptor API
+## API
 
-create can be made by passing the relevant config to `mini-lifecycle-interceptor`.
+创建方法可以用来修改 `mini-lifecycle-interceptor`的配置.
 
 miniLifeCycle.create(env, config)
 
@@ -108,11 +108,11 @@ miniLifeCycle.create('weapp', {
 })
 ```
 
-## Interceptors method aliaes
+## 拦截器方法
 
-For convenience aliases have been provided for all supported mini program lifeCycle methods.
+为方便起见，为所有支持的拦截器方法提供了别名
 
-### Page LifeCycle Method Interceptor
+### 页面生命周期方法拦截器
 
 miniLifeCycle.interceptors.onLoad.use // or miniLifeCycle.interceptors.onLoad.useAfter
 
@@ -124,7 +124,7 @@ miniLifeCycle.interceptors.onReady.use // or miniLifeCycle.interceptors.onReady.
 
 miniLifeCycle.interceptors.onUnload.use // or miniLifeCycle.interceptors.onUnload.useAfter
 
-### Component LifeCycle Method Interceptor
+### 自定义组件生命周期方法拦截器
 
 miniLifeCycle.interceptors.created.use // or miniLifeCycle.interceptors.created.useAfter
 
@@ -138,6 +138,6 @@ miniLifeCycle.interceptors.moved.use // or miniLifeCycle.interceptors.moved.useA
 
 miniLifeCycle.interceptors.error.use // or miniLifeCycle.interceptors.error.useAfter
 
-## License
+## 许可证
 
 [MIT](LICENSE)
