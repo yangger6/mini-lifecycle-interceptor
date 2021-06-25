@@ -28,7 +28,7 @@ $ npm install mini-lifecycle-interceptor
 Using yarn:
 
 ```bash
-$ yarn add axios
+$ yarn add mini-lifecycle-interceptor
 ```
 
 ## Example
