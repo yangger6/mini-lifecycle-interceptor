@@ -1,7 +1,12 @@
-import InterceptorManager, { IMiniLifeCycleKey, miniComponentLifeCycle, miniPageLifeCycle } from './InterceptorManager'
+import InterceptorManager from './InterceptorManager'
 import wxCompose, { INextHandle } from '../utils/wxCompose'
 import { IMiniLifeCycle } from '../index'
 import { compareVersion } from '../utils/index'
+import {
+  getMiniProgramLifecycles,
+  IMiniProgramComponentLifecyclePublicKeys,
+  IMiniProgramPageLifecyclePublicKeys,
+} from './miniLifecycles'
 
 /**
  * 覆盖写入小程序Page方法
@@ -9,20 +14,27 @@ import { compareVersion } from '../utils/index'
  */
 export function overwritePage(this: IMiniLifeCycle, options: any) {
   const miniLifeCycleInstance = this
-  Object.keys(miniPageLifeCycle).forEach((pageLifeCycleKey) => {
+  const { pageLifecycles } = getMiniProgramLifecycles(miniLifeCycleInstance.env)
+  if (!pageLifecycles) {
+    console.error(`小程序平台: ${miniLifeCycleInstance.env}, 没有配置Page的生命周期方法`)
+    return
+  }
+  Object.keys(pageLifecycles).forEach((pageLifeCycleKey) => {
+    // 当前小程序生命周期方法名
+    const currentLifecycleFunctionName = pageLifecycles[pageLifeCycleKey as IMiniProgramPageLifecyclePublicKeys]
     // 小程序生命周期原来的方法
-    const originLifeCycleFunction = options[pageLifeCycleKey]
+    const originLifeCycleFunction = options[currentLifecycleFunctionName]
     // 包装
-    options[pageLifeCycleKey] = function (...args: any) {
+    options[currentLifecycleFunctionName] = function (...args: any) {
       // 小程序生命周期内的上下文
       const miniContext = this
       // 如果写了拦截器
       if (
         miniLifeCycleInstance.interceptors &&
-        Object.hasOwnProperty.call(miniLifeCycleInstance.interceptors, pageLifeCycleKey)
+        Object.hasOwnProperty.call(miniLifeCycleInstance.interceptors, currentLifecycleFunctionName)
       ) {
         const { useHandles, useAfterHandles }: InterceptorManager =
-          miniLifeCycleInstance.interceptors[pageLifeCycleKey as IMiniLifeCycleKey]
+          miniLifeCycleInstance.interceptors[pageLifeCycleKey as IMiniProgramPageLifecyclePublicKeys]
         // 包装页面的生命周期函数
         const wrapperFn = <T>(options: T, next: INextHandle): void => {
           if (originLifeCycleFunction) {
@@ -44,6 +56,11 @@ export function overwritePage(this: IMiniLifeCycle, options: any) {
 
 export function overwriteComponent(this: IMiniLifeCycle, options: any) {
   const miniLifeCycleInstance = this
+  const { componentLifecycles } = getMiniProgramLifecycles(miniLifeCycleInstance.env)
+  if (!componentLifecycles) {
+    console.error(`小程序平台: ${miniLifeCycleInstance.env}, 没有配置Component的生命周期方法`)
+    return
+  }
   // ========== 微信小程序特殊处理开始 ==========
   let needOverwriteLifetimes = false // 是否要覆盖写入lifetimes字段
   let optionsOrLifeTimes: any
@@ -62,18 +79,22 @@ export function overwriteComponent(this: IMiniLifeCycle, options: any) {
     optionsOrLifeTimes = options
   }
   // ========== 微信小程序特殊处理结束 ==========
-  Object.keys(miniComponentLifeCycle).forEach((componentLifeCycleKey) => {
+  Object.keys(componentLifecycles).forEach((componentLifeCycleKey) => {
+    // 当前小程序生命周期方法名
+    const currentLifecycleFunctionName =
+      componentLifecycles[componentLifeCycleKey as IMiniProgramComponentLifecyclePublicKeys]
     if (needOverwriteLifetimes) {
       // 把原本的生命周期方法写入 lifetimes
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      optionsOrLifeTimes[componentLifeCycleKey] = optionsOrLifeTimes[componentLifeCycleKey] || function () {}
+      optionsOrLifeTimes[currentLifecycleFunctionName] =
+        optionsOrLifeTimes[currentLifecycleFunctionName] || function () {}
       // 防止重复调用 删除原来的
-      delete options[componentLifeCycleKey]
+      delete options[currentLifecycleFunctionName]
     }
     // 原来的生命周期的方法
-    const originLifeCycleFunction = optionsOrLifeTimes[componentLifeCycleKey]
+    const originLifeCycleFunction = optionsOrLifeTimes[currentLifecycleFunctionName]
     // 设置新的生命周期方法
-    optionsOrLifeTimes[componentLifeCycleKey] = function (...args: any) {
+    optionsOrLifeTimes[currentLifecycleFunctionName] = function (...args: any) {
       // 小程序生命周期内的上下文
       const miniContext = this
       // 如果有拦截器
@@ -82,7 +103,7 @@ export function overwriteComponent(this: IMiniLifeCycle, options: any) {
         Object.hasOwnProperty.call(miniLifeCycleInstance.interceptors, componentLifeCycleKey)
       ) {
         const { useHandles, useAfterHandles }: InterceptorManager =
-          miniLifeCycleInstance.interceptors[componentLifeCycleKey as IMiniLifeCycleKey]
+          miniLifeCycleInstance.interceptors[componentLifeCycleKey as IMiniProgramComponentLifecyclePublicKeys]
         // 包装页面的生命周期函数
         const wrapperFn = <T>(options: T, next: INextHandle): void => {
           if (originLifeCycleFunction) {

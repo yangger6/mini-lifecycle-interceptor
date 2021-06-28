@@ -1,42 +1,20 @@
+import { APP_ENV } from '../index';
 import { IHandle } from '../utils/wxCompose';
-/**
- * 小程序页面的生命周期钩子集合
- * @description 官网 - https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html
- */
-export declare const miniPageLifeCycle: {
-    onLaunch: string;
-    onReady: string;
-    onShow: string;
-    onHide: string;
-    onLoad: string;
-    onUnload: string;
-};
-/**
- * 自定义组件的生命周期钩子集合
- * @description 官网 - https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/lifetimes.html
- */
-export declare const miniComponentLifeCycle: {
-    created: string;
-    attached: string;
-    ready: string;
-    detached: string;
-    moved: string;
-    error: string;
-};
-export declare type IWrapperType = 'Page' | 'Component';
-export declare type IMiniLifeCycleKey = keyof typeof miniPageLifeCycle | keyof typeof miniComponentLifeCycle;
+import { IMiniProgramComponentLifecyclePublicKeys, IMiniProgramPageLifecyclePublicKeys, IWrapperType } from './miniLifecycles';
 /**
  * 原型是否为小程序的生命周期的原型
+ * @param env {string} - 小程序的运行环境
  * @param prototype {string} - 传入的原型key
  */
-export declare const isLifeCyclePrototype: (prototype: string) => boolean;
+export declare const isLifeCyclePrototype: (env: APP_ENV, prototype: string) => boolean;
 export default class InterceptorManager {
+    env: APP_ENV;
     useHandles: Array<IHandle<any>>;
     useAfterHandles: Array<IHandle<any>>;
     wrapperType: IWrapperType | null;
-    lifeCycleType: IMiniLifeCycleKey | null;
+    lifeCycleType: IMiniProgramComponentLifecyclePublicKeys | IMiniProgramPageLifecyclePublicKeys | null;
     isDestroy: boolean;
-    constructor(lifeCycleType: IMiniLifeCycleKey);
+    constructor(env: APP_ENV, lifeCycleType: IMiniProgramComponentLifecyclePublicKeys | IMiniProgramPageLifecyclePublicKeys);
     use<T>(handles: IHandle<T> | Array<IHandle<T>>): void;
     useAfter<T>(handles: IHandle<T> | Array<IHandle<T>>): void;
     destroy(): void;

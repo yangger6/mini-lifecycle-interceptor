@@ -19,6 +19,23 @@ Mini Program lifeCycle interceptor
 - [x]  support Taro
 - [ ]  support Alipay Mini Program
 
+Different App Env Support Table.
+
+| Prototype     | Type          | Wechat        | Alipay        |
+| ------------- | ------------- | ------------- | ------------- |
+| onLoad        | `Page`        | ✔️           	| ✔️            |
+| onShow        | `Page`        | ✔️           	| ✔️            |
+| onReady       | `Page`        | ✔️           	| ✔️            |
+| onHide        | `Page`        | ✔️           	| ✔️            |
+| onUnload      | `Page`        | ✔️           	| ✔️            |
+| created        | `Component`        | ✔️           	| ✔️            |
+| created        | `Component`        | ✔️           	| ✔️            |
+| created        | `Component`        | ✔️           	| ✔️            |
+| created        | `Component`        | ✔️           	| ✔️            |
+| created        | `Component`        | ✔️           	| ✔️            |
+| created        | `Component`        | ✔️           	| ✔️            |
+
+
 ## Installing
 
 Using npm:
