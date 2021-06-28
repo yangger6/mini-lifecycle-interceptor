@@ -94,9 +94,7 @@ function App(props: any) {
 
 Using Wechat Mini Program
 
-```typescript
-// TODO
-```
+[Preview effects in wechatwebdevtools.app](https://developers.weixin.qq.com/s/OTFY2om97wrf)
 
 ## mini-lifecycle-interceptor API
 
