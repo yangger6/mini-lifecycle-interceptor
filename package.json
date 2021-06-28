@@ -1,7 +1,7 @@
 {
     "name": "mini-lifecycle-interceptor",
-    "version": "0.0.2",
-    "description": "微信小程序生命周期钩子拦截器",
+    "version": "0.0.3",
+    "description": "小程序生命周期钩子拦截器",
     "main": "dist/index.js",
     "module": "dist/index.js",
     "types": "types/index.d.ts",
