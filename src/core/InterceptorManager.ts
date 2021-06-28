@@ -1,4 +1,4 @@
-import { handleToList } from '../utils'
+import { handleToList } from '../utils/index'
 import { IHandle } from '../utils/wxCompose'
 
 /**
@@ -6,6 +6,7 @@ import { IHandle } from '../utils/wxCompose'
  * @description 官网 - https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page-life-cycle.html
  */
 export const miniPageLifeCycle = {
+  onLaunch: 'onLaunch',
   onReady: 'onReady',
   onShow: 'onShow',
   onHide: 'onHide',

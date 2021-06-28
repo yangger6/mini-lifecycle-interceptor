@@ -4,11 +4,12 @@
     "description": "微信小程序生命周期钩子拦截器",
     "main": "dist/index.js",
     "module": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "types": "types/index.d.ts",
     "scripts": {
-        "dev": "rm -rf ./lib && npx spack",
-        "build": "yarn dev && tsc --emitDeclarationOnly",
+        "dev": "rm -rf ./dist && yarn spack",
+        "build": "rm -rf ./dist && npx swc src -d dist && yarn types",
         "test": "echo \"Error: no test specified\" && exit 1",
+        "types": "rm -rf ./types && tsc --emitDeclarationOnly",
         "lint": "eslint 'src/**/*.ts'"
     },
     "repository": {
