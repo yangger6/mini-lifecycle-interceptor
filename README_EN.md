@@ -59,7 +59,7 @@ Using Taro:
 
 import { useEffect } from 'react'
 import miniLifeCycle from 'mini-lifecycle-interceptor'
-miniLifeCycle.create('weapp') // app env, default: weapp
+miniLifeCycle.create(process.env.TARO_ENV) // weapp | alipay, default: weapp
 
 function App(props: any) {
     const delay = (t, prefix) =>
@@ -121,7 +121,8 @@ create can be made by passing the relevant config to `mini-lifecycle-interceptor
 miniLifeCycle.create(env, config)
 
 ```typescript
-miniLifeCycle.create('weapp', {
+// Wechat: weapp Alipay: alipay
+miniLifeCycle.create('weapp', { // or alipay
     // TODO
 })
 ```
