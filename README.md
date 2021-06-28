@@ -24,7 +24,7 @@ Mini Program lifeCycle interceptor
 Using npm:
 
 ```bash
-$ npm install mini-lifecycle-interceptor
+$ npm install mini-lifecycle-interceptor --save
 ```
 
 Using yarn:

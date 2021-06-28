@@ -24,7 +24,7 @@
 使用 npm:
 
 ```bash
-$ npm install mini-lifecycle-interceptor
+$ npm install mini-lifecycle-interceptor --save
 ```
 
 使用 yarn:
