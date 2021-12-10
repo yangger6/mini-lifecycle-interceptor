@@ -112,7 +112,7 @@ function App(props: any) {
 
 Using Wechat Mini Program
 
-[Preview effects in wechatwebdevtools.app](https://developers.weixin.qq.com/s/OTFY2om97wrf)
+[Preview effects in wechatwebdevtools.app](https://developers.weixin.qq.com/s/owOFbrmR79v1)
 
 ## mini-lifecycle-interceptor API
 

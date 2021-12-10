@@ -111,7 +111,7 @@ function App(props: any) {
 
 使用微信小程序:
 
-[在开发者工具中预览效果](https://developers.weixin.qq.com/s/OTFY2om97wrf)
+[在开发者工具中预览效果](https://developers.weixin.qq.com/s/owOFbrmR79v1)
 
 ## API
 
