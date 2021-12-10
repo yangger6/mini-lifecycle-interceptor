@@ -86,8 +86,7 @@ export function overwriteComponent(this: IMiniLifeCycle, options: any) {
     if (needOverwriteLifetimes) {
       // 把原本的生命周期方法写入 lifetimes
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      optionsOrLifeTimes[currentLifecycleFunctionName] =
-        optionsOrLifeTimes[currentLifecycleFunctionName] || function () {}
+      optionsOrLifeTimes[currentLifecycleFunctionName] = options[currentLifecycleFunctionName] || function () {}
       // 防止重复调用 删除原来的
       delete options[currentLifecycleFunctionName]
     }
